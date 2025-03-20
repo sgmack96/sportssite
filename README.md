@@ -52,4 +52,5 @@ Betting Service Page
 URL: /betting
 Options:
 Select Team: Displays last 10 games of the selected team, including record and betting spread record.
-League Data: Displays last 10 games data for the entire league, ranking teams based on betting spread records.
+League Data: Displays last 10 games data for the entire league, ranking teams based on betting spread records.![flow](https://github.com/user-attachments/assets/7e003c2c-48b3-49a4-abc8-974413e78c2f)
+
