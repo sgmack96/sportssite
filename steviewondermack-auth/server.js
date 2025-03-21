@@ -1,9 +1,16 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+const path = require('path');
 const authRoutes = require('./auth');
 
 const app = express();
-app.use(bodyParser.json());
+
+// Serve static files from Steviewondermack-landing/public
+app.use('/landing', express.static(path.join(__dirname, '../Steviewondermack-landing/public')));
+
+// Serve static files from Steviewondermack-auth/public
+app.use('/auth', express.static(path.join(__dirname, 'public')));
+
+// Use authentication routes
 app.use('/auth', authRoutes);
 
 app.listen(3000, () => {
