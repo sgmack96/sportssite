@@ -1,11 +1,14 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const port = 3000;
 
-app.use(express.static('public'));
+// Serve static files from Steviewondermack-landing/public
+app.use(express.static(path.join(__dirname, 'public')));
 
+// Serve the main landing page
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html');
+    res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
 app.listen(port, () => {
