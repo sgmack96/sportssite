@@ -29,4 +29,4 @@ async function fetchNBAScores() {
     }
 }
 
-fetchNBAScores();
+document.addEventListener('DOMContentLoaded', fetchNBAScores);
