@@ -18,3 +18,10 @@ id = "d07b3639e00f4879bffa4e5a7d812320"
 [[kv_namespaces]]
 binding = "TOKENS"
 id = "1981fe4d13c842a39078ca0ea7f06bad"
+
+[build]
+command = "npm run build"  # Adjust this if you have a different build command
+
+[build.upload]
+format = "service-worker"
+dir = "steviewondermack-site/steviewondermack-landing/public"
