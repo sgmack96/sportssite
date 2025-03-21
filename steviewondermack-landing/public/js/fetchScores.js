@@ -4,6 +4,7 @@ const API_URL = 'https://site.api.espn.com/apis/site/v2/sports/basketball/nba/sc
 
 async function fetchNBAScores() {
     try {
+        console.log('Fetching NBA scores...');
         const response = await axios.get(API_URL, {
             params: {
                 date: new Date().toISOString().split('T')[0]
@@ -12,6 +13,7 @@ async function fetchNBAScores() {
 
         const games = response.data.events;
         const scoresDiv = document.getElementById('scores');
+        console.log('Scores div:', scoresDiv);
         scoresDiv.innerHTML = ''; // Clear previous scores
 
         games.forEach(game => {
@@ -22,11 +24,16 @@ async function fetchNBAScores() {
                 <p>Score: ${game.competitions[0].competitors[0].score} - ${game.competitions[0].competitors[1].score}</p>
                 <hr>
             `;
+            console.log('Appending game div:', gameDiv);
             scoresDiv.appendChild(gameDiv);
         });
+
+        console.log('Scores appended to the page.');
     } catch (error) {
         console.error('Error fetching NBA scores:', error);
     }
 }
 
 document.addEventListener('DOMContentLoaded', fetchNBAScores);
+
+
