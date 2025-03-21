@@ -1,0 +1,20 @@
+name = "steviewondermack-site"
+type = "webpack"
+route = ''
+zone_id = ''
+usage_model = ''
+compatibility_flags = []
+workers_dev = true
+compatibility_date = "2025-03-21"
+
+[[kv_namespaces]]
+binding = "USERS"
+id = "4b8794b6177b439f9701f78b8216a900"
+
+[[kv_namespaces]]
+binding = "CODES"
+id = "d07b3639e00f4879bffa4e5a7d812320"
+
+[[kv_namespaces]]
+binding = "TOKENS"
+id = "1981fe4d13c842a39078ca0ea7f06bad"
