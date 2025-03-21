@@ -24,4 +24,4 @@ command = "npm run build"  # Adjust this if you have a different build command
 
 [build.upload]
 format = "service-worker"
-dir = "steviewondermack-site/steviewondermack-landing/public"
+dir = "steviewondermack-landing/public"
