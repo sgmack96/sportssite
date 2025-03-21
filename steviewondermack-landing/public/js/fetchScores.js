@@ -1,23 +1,45 @@
 // fetchScores.js
 async function getNBAScores() {
-    const response = await fetch('https://api-basketball.p.rapidapi.com/games', {
-        headers: {
-            'X-RapidAPI-Key': '3d5f43dceb19bd4fc42a5b39d60abfe1',
-            'X-RapidAPI-Host': 'api-basketball.p.rapidapi.com'
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const day = String(today.getDate()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+
+    try {
+        const response = await fetch(`https://v1.basketball.api-sports.io/games?date=${formattedDate}`, {
+            headers: {
+                'x-apisports-key': '3d5f43dceb19bd4fc42a5b39d60abfe1'
+            }
+        });
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
-    });
-    const data = await response.json();
-    return data;
+        const data = await response.json();
+        console.log('API Response:', data); // Debugging line
+        return data;
+    } catch (error) {
+        console.error('Error fetching NBA scores:', error); // Debugging line
+    }
 }
 
 async function displayScores() {
     const scores = await getNBAScores();
-    const scoresDiv = document.getElementById('scores');
-    scores.response.forEach(game => {
-        const gameDiv = document.createElement('div');
-        gameDiv.innerHTML = `<p>${game.teams.home.name} ${game.scores.home.points} - ${game.teams.away.name} ${game.scores.away.points}</p>`;
-        scoresDiv.appendChild(gameDiv);
-    });
+    if (scores && scores.response) {
+        const scoresTableBody = document.querySelector('#scores tbody');
+        scores.response.forEach(game => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${game.teams.home.name}</td>
+                <td>${game.scores.home.points}</td>
+                <td>${game.teams.away.name}</td>
+                <td>${game.scores.away.points}</td>
+            `;
+            scoresTableBody.appendChild(row);
+        });
+    } else {
+        console.error('No scores data available'); // Debugging line
+    }
 }
 
 displayScores();
