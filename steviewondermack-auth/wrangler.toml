@@ -1,0 +1,6 @@
+name = "my-auth-worker"
+type = "javascript"
+account_id = "7935a6f1039d4c27e307c443d452d6bf"
+workers_dev = true
+route = ""
+zone_id = "7935a6f1039d4c27e307c443d452d6bf
