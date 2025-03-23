@@ -5,6 +5,8 @@ const authRoutes = require('./auth');
 const app = express();
 const port = 3000;
 
+app.use(bodyParser.json());
+
 // Serve static files from Steviewondermack-landing/public
 app.use(express.static(path.join(__dirname, 'public')));
 
