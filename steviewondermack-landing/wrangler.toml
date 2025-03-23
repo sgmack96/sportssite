@@ -3,4 +3,9 @@ type = "javascript"
 account_id = "7935a6f1039d4c27e307c443d452d6bf"
 workers_dev = true
 route = ""
-zone_id = "7935a6f1039d4c27e307c443d452d6bf
+zone_id = "7935a6f1039d4c27e307c443d452d6bf"
+
+[[kv_namespaces]]
+binding = "USERS"
+id = "4b8794b6177b439f9701f78b8216a900"
+
