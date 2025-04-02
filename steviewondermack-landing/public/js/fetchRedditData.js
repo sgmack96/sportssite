@@ -20,32 +20,7 @@ async function fetchRedditData() {
             const postElement = document.createElement('div');
             postElement.innerHTML = `
                 <h2>${post.data.title}</h2>
-                <p>${post.data.selftext}</p>
                 <a href="${post.data.url}" target="_blank">Read more</a>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Player</th>
-                            <th>MINS</th>
-                            <th>PTS</th>
-                            <th>FGM-A</th>
-                            <th>3PM-A</th>
-                            <th>FTM-A</th>
-                            <th>ORB</th>
-                            <th>DRB</th>
-                            <th>REB</th>
-                            <th>AST</th>
-                            <th>STL</th>
-                            <th>BLK</th>
-                            <th>TO</th>
-                            <th>PF</th>
-                            <th>+/-</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Add rows dynamically here -->
-                    </tbody>
-                </table>
             `;
             posts.appendChild(postElement);
         });
