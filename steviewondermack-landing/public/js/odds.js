@@ -1,5 +1,5 @@
 // js/odds.js
-const apiKey = b344efd179ea1c39183acde698dd14e5;
+const apiKey = ' b344efd179ea1c39183acde698dd14e5';
 const apiUrl = `https://api.the-odds-api.com/v4/sports/basketball_nba/odds?regions=us&markets=h2h,spreads,totals&oddsFormat=american&apiKey=${apiKey}`;
 
 async function fetchOdds() {
