@@ -14,19 +14,19 @@ async function fetchNBAStandings() {
             newRow.innerHTML = `
                 <td>${index + 1}</td>
                 <td>${team.team.displayName}</td>
-                <td>${team.stats[0].value}</td>
-                <td>${team.stats[1].value}</td>
-                <td>${team.stats[2].value}</td>
-                <td>${team.stats[3].value}</td>
-                <td>${team.stats[4].value}</td>
-                <td>${team.stats[5].value}</td>
-                <td>${team.stats[6].value}</td>
-                <td>${team.stats[7].value}</td>
-                <td>${team.stats[8].value}</td>
-                <td>${team.stats[9].value}</td>
-                <td>${team.stats[10].value}</td>
-                <td>${team.stats[11].value}</td>
-                <td>${team.stats[12].value}</td>
+                <td>${team.stats.find(stat => stat.name === 'wins').value}</td>
+                <td>${team.stats.find(stat => stat.name === 'losses').value}</td>
+                <td>${team.stats.find(stat => stat.name === 'winPercent').value}</td>
+                <td>${team.stats.find(stat => stat.name === 'gamesBehind').value}</td>
+                <td>${team.stats.find(stat => stat.name === 'homeRecord').summary}</td>
+                <td>${team.stats.find(stat => stat.name === 'awayRecord').summary}</td>
+                <td>${team.stats.find(stat => stat.name === 'divisionRecord').summary}</td>
+                <td>${team.stats.find(stat => stat.name === 'conferenceRecord').summary}</td>
+                <td>${team.stats.find(stat => stat.name === 'pointsPerGame').value}</td>
+                <td>${team.stats.find(stat => stat.name === 'opponentPointsPerGame').value}</td>
+                <td>${team.stats.find(stat => stat.name === 'pointDifferential').value}</td>
+                <td>${team.stats.find(stat => stat.name === 'streak').value}</td>
+                <td>${team.stats.find(stat => stat.name === 'lastTen').summary}</td>
             `;
             tableBody.appendChild(newRow);
         });
