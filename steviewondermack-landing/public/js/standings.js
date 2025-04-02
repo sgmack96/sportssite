@@ -1,12 +1,11 @@
-const axios = require('axios');
-
-const API_URL = 'https://site.api.espn.com/apis/site/v2/sports/basketball/nba/standings';
+const API_URL = 'https://site.web.api.espn.com/apis/site/v2/sports/basketball/nba/standings?season=2024';
 
 async function fetchNBAStandings() {
     try {
         console.log('Fetching NBA standings...');
-        const response = await axios.get(API_URL);
-        const standings = response.data.children[0].standings.entries;
+        const response = await fetch(API_URL);
+        const data = await response.json();
+        const standings = data.children[0].standings.entries;
         const tableBody = document.querySelector('#standingsTable tbody');
         tableBody.innerHTML = ''; // Clear previous standings
 
