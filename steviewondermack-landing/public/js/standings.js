@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const standingsDiv = document.getElementById('standings');
 
-    fetch('https://www.balldontlie.io/api/v1/standings')
+    fetch('https://cors-anywhere.herokuapp.com/https://www.balldontlie.io/api/v1/standings')
         .then(response => response.json())
         .then(data => {
             const standings = data.data;
