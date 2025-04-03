@@ -3,11 +3,19 @@ const path = require('path');
 const authRoutes = require('./auth');
 const bodyParser = require('body-parser');
 const axios = require('axios');
+const session = require('express-session');
 
 const app = express();
 const port = 3000;
 
 app.use(bodyParser.json());
+
+app.use(session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false } // Set to true if using HTTPS
+}));
 
 // Serve static files from Steviewondermack-landing/public
 app.use(express.static(path.join(__dirname, 'public')));
@@ -23,7 +31,7 @@ app.get('/', (req, res) => {
 // Callback route to handle the redirection after authentication
 app.get('/callback', async (req, res) => {
     const code = req.query.code;
-    const redirectUri = 'https://yourdomain.com/callback'; // Update with your actual callback URL
+    const redirectUri = 'https://steviewondermack.us/callback'; // Update with your actual callback URL
     const tokenEndpoint = 'https://soccer-stats.stephenmack96.workers.dev/token';
 
     try {
@@ -36,11 +44,11 @@ app.get('/callback', async (req, res) => {
         });
 
         const tokens = response.data;
-        // Save tokens in session or cookies
-        // For example, using express-session:
-        // req.session.tokens = tokens;
+        // Assuming the username is part of the token response
+        req.session.username = tokens.username;
 
-        res.redirect('/dashboard'); // Redirect to a protected page
+        // Redirect to your domain
+        res.redirect('https://steviewondermack.us'); // Redirect to a protected page
     } catch (error) {
         res.status(500).send('Authentication failed');
     }
