@@ -1,11 +1,15 @@
 const axios = require('axios');
 
-const API_URL = 'https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard';
+const API_URLS = {
+    nba: 'https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard',
+    mlb: 'https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard',
+    'la-liga': 'https://site.api.espn.com/apis/site/v2/sports/soccer/esp.1/scoreboard',
+    epl: 'https://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard'
+};
 
-async function fetchNBAScores() {
+async function fetchScores(league) {
     try {
-        console.log('Fetching NBA scores...');
-        const response = await axios.get(API_URL, {
+        const response = await axios.get(API_URLS[league], {
             params: {
                 date: new Date().toISOString().split('T')[0]
             }
@@ -13,8 +17,7 @@ async function fetchNBAScores() {
 
         const games = response.data.events;
         const scoresDiv = document.getElementById('scores');
-        console.log('Scores div:', scoresDiv);
-        scoresDiv.innerHTML = ''; // Clear previous scores
+        scoresDiv.innerHTML = '';
 
         games.forEach(game => {
             const gameDiv = document.createElement('div');
@@ -24,16 +27,19 @@ async function fetchNBAScores() {
                 <p>Score: ${game.competitions[0].competitors[0].score} - ${game.competitions[0].competitors[1].score}</p>
                 <hr>
             `;
-            console.log('Appending game div:', gameDiv);
             scoresDiv.appendChild(gameDiv);
         });
-
-        console.log('Scores appended to the page.');
     } catch (error) {
-        console.error('Error fetching NBA scores:', error);
+        console.error(`Error fetching ${league} scores:`, error);
     }
 }
 
-document.addEventListener('DOMContentLoaded', fetchNBAScores);
+document.addEventListener('DOMContentLoaded', () => {
+    const leagueSelect = document.getElementById('league-select');
+    leagueSelect.addEventListener('change', () => {
+        const selectedLeague = leagueSelect.value;
+        fetchScores(selectedLeague);
+    });
 
-
+    fetchScores('nba');
+});
