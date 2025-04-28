@@ -9,11 +9,14 @@ const API_URLS = {
 
 async function fetchScores(league) {
     try {
+        console.log(`Fetching ${league} scores...`);
         const response = await axios.get(API_URLS[league], {
             params: {
                 date: new Date().toISOString().split('T')[0]
             }
         });
+
+        console.log(`Response from ${league} API:`, response);
 
         const games = response.data.events;
         const scoresDiv = document.getElementById('scores');
@@ -34,10 +37,14 @@ async function fetchScores(league) {
     }
 }
 
+// Attach fetchScores to the window object to make it globally accessible
+window.fetchScores = fetchScores;
+
 document.addEventListener('DOMContentLoaded', () => {
     const leagueSelect = document.getElementById('league-select');
     leagueSelect.addEventListener('change', () => {
         const selectedLeague = leagueSelect.value;
+        console.log(`Selected league: ${selectedLeague}`);
         fetchScores(selectedLeague);
     });
 
